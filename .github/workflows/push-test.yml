@@ -1,0 +1,29 @@
+name: CI Workflow
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: self-hosted
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Linting
+      run: npm run lint
+      continue-on-error: false
+
+    - name: Testing
+      run: npm run test
+      continue-on-error: false
+
+    - name: Building
+      run: npm run build
+      continue-on-error: false
