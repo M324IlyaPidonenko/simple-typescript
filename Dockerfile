@@ -1,20 +1,26 @@
-# Use an official Node.js image as a base
+# Verwenden eines offiziellen Node.js Basisimages
 FROM node:14
  
-# Set the working directory in the container
+# Arbeitsverzeichnis im Container festlegen
 WORKDIR /app
  
-# Copy package.json and package-lock.json
+# Kopieren der package.json und package-lock.json (falls vorhanden)
 COPY package*.json ./
  
-# Install dependencies
+# Installieren von Abhängigkeiten
 RUN npm install
  
-# Copy the rest of the application code
+# Kopieren des Quellcodes in das Arbeitsverzeichnis
 COPY . .
  
-# Build TypeScript source code
+# Linting durchführen
+RUN npm run lint
+ 
+# Tests durchführen
+RUN npm run test
+ 
+# Build durchführen
 RUN npm run build
  
-# Start the application
-CMD npm start
+# Der Startbefehl, der beim Ausführen des Containers ausgeführt wird
+CMD ["node", "your-start-script.js"]
