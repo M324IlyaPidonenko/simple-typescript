@@ -55,7 +55,6 @@ jobs:
             KUBERNETES_NAMESPACE
             IMAGE_TAG
             APP_NAME
-            APP_NAME
             BASE_URL
         
            
