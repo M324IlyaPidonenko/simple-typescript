@@ -9,7 +9,7 @@ on:
 env:
   KUBERNETES_NAMESPACE: m324-4
   IMAGE_TAG: iljapidonenko/simple-typescript:latest
-  APP_NAME: M324-pidonenko
+  APP_NAME: m324-pidonenko
   BASE_URL: m324-pidonenko.hackerman.ch
 
 jobs:
