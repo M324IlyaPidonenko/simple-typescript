@@ -6,6 +6,11 @@ on:
       - master
     types:
       - closed
+env:
+  KUBERNETES_NAMESPACE: m324-4
+  IMAGE_TAG: iljapidonenko/simple-typescript:latest
+  APP_NAME: M324-pidonenko
+  BASE_URL: m324-pidonenko.hackerman.ch
 
 jobs:
   if_merged:    
@@ -25,3 +30,32 @@ jobs:
           context: .
           push: true
           tags: iljapidonenko/simple-typescript:latest
+
+      - name: Set up Kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: 'latest'
+
+      - name: Set Kubernetes Context
+        uses: azure/k8s-set-context@v3
+        with:
+          kubeconfig: ${{ secrets.CUBERNETES_CONFIG }}
+
+      - name: Replace and Apply Kubernetes Manifests
+        uses: swdotcom/update-and-apply-kubernetes-configs@v1
+        with:
+          k8-config-file-paths: |
+            .k8s/00_namespace.yml
+            .k8s/01_deployment.yml
+            .k8s/02_service.yml
+            .k8s/03_ingress.yml
+            .k8s/04_ingress_example.yml
+          replacement-method: list
+          env-replacement-list: |
+            KUBERNETES_NAMESPACE
+            IMAGE_TAG
+            APP_NAME
+            APP_NAME
+            BASE_URL
+        
+           
