@@ -1,0 +1,20 @@
+name: ci
+
+on: 
+  pull_request:
+    branches:
+      - master
+      - development
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  docker:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Build Docker Image
+        run: docker build -t iljapidonenko/simple-typescript:latest .

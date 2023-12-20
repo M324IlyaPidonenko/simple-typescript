@@ -1,5 +1,5 @@
 # Verwenden eines offiziellen Node.js Basisimages
-FROM node:14
+FROM node:20
  
 # Arbeitsverzeichnis im Container festlegen
 WORKDIR /app
@@ -23,4 +23,4 @@ RUN npm run test
 RUN npm run build
  
 # Der Startbefehl, der beim Ausführen des Containers ausgeführt wird
-CMD ["node", "your-start-script.js"]
+CMD ["npm", "run", "start"]
