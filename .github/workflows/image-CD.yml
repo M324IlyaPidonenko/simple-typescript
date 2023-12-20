@@ -49,7 +49,6 @@ jobs:
             .k8s/01_deployment.yml
             .k8s/02_service.yml
             .k8s/03_ingress.yml
-            .k8s/04_ingress_example.yml
           replacement-method: list
           env-replacement-list: |
             KUBERNETES_NAMESPACE
