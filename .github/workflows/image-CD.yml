@@ -4,11 +4,6 @@ on:
   push:
     tags:
       - 'v*.*.*'
-env:
-  KUBERNETES_NAMESPACE: m324-4
-  IMAGE_TAG: iljapidonenko/simple-typescript:latest
-  APP_NAME: m324-pidonenko
-  BASE_URL: ilja.m324.hackerman.ch
 
 jobs:
   if_tag_pushed:
@@ -56,5 +51,9 @@ jobs:
             IMAGE_TAG
             APP_NAME
             BASE_URL
-        
+        env:
+          KUBERNETES_NAMESPACE: m324-4
+          IMAGE_TAG: iljapidonenko/simple-typescript:${{ env.TAG_NAME }}
+          APP_NAME: m324-pidonenko
+          BASE_URL: ilja.m324.hackerman.ch
            
