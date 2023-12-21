@@ -2,7 +2,6 @@ import express from 'express';
 import http from 'http';
 import { Request, Response } from 'express';
 import os from 'os';
-import { format } from 'date-fns';
 
 // Create the express server
 const app = express();
@@ -14,12 +13,10 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get('/log/time', (req: Request, res: Response) => {
-  const currentTime = new Date();
-  const formattedTime = format(currentTime, 'yyyy-MM-dd HH:mm:ss');
+  const currentTime = new Date().toISOString();
+  console.log(`Request received at /log/time. Current time: ${currentTime}`);
 
-  console.log(`Request received at /log/time. Current time: ${formattedTime}`);
-
-  res.send(`<p>Logged current time: ${formattedTime}</p>`);
+  res.send(`<p>Logged current time: ${currentTime}</p>`);
 });
 
 const serverPort = process.env.PORT || 3000;
