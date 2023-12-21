@@ -21,6 +21,5 @@ app.get('/log/time', (req: Request, res: Response) => {
 
 const serverPort = process.env.PORT || 3000;
 server.listen(serverPort, () => {
-  // eslint-disable-next-line no-console
   console.log(`Express Server started on port ${serverPort}`);
 });
